@@ -40,6 +40,26 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Now write your own player class
+// This class requires an update(), render() and
+// a handleInput() method.
+var Player = function() {
+    this.sprite = 'images/char-horn-girl.png'
+    this.x = 200;
+    this.y = 400;
+}
+
+Player.prototype.update = function() {
+    // Handle player go over water
+    if (this.y < 20) {
+        this.reset();
+    }
+};
+
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
 Player.prototype.handleInput = function(direction) {
     if (direction == 'left' && this.x > 0) {
         this.x -= 100;
@@ -52,14 +72,35 @@ Player.prototype.handleInput = function(direction) {
     }
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
-var Player = function() {
-    this.sprite = 'images/char-horn-girl.png'
+Player.prototype.reset = function() {
     this.x = 200;
-    this.y = 400;
-}
+    this.y = 310;
+};
+
+var Heart = function() {
+    this.sprite = 'images/Heart.png';
+    this.x = 200;
+    this.y = 55;
+};
+
+Heart.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Heart.prototype.update = function() {
+    // Handle when player collects heart
+    if (this.x < player.x + 30 &&
+        this.x + 60 > player.x &&
+        this.y + 30 > player.y &&
+        this.y < player.y + 60) {
+        score += 1;
+        $('#score').text(score);
+        this.x = possibleX[Math.floor(Math.random() * possibleX.length)];
+        this.y = possibleY[Math.floor(Math.random() * possibleY.length)];
+        player.reset();
+    }
+};
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
