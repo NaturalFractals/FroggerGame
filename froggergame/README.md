@@ -18,8 +18,8 @@ Installation
 To run the application:
 
 Download the GitHub zip file or clone the repository onto your local workstation:
-zip file https://github.com/alexsales/frontend-nanodegree-frogger-arcade-game/archive/frogger-arcade-master.zip
-git clone https://github.com/alexsales/frontend-nanodegree-frogger-arcade-game.git/
+zip file 
+git clone https://github.com/NaturalFractals/FroggerGame.git
 Open a browser window and navigate to the index.html file in your application's directory.
 Tools / Techniques
 
